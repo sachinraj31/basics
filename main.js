@@ -11,3 +11,7 @@ item[3].style.backgroundColor = "green";
 for (let i = 0; i < item.length; i++) {
   item[i].style.fontWeight = "bold";
 }
+let li = document.getElementsByTagName("li");
+for (let i = 0; i < li.length; i++) {
+  li[i].style.fontWeight = "bold";
+}
