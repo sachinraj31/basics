@@ -28,35 +28,64 @@
 // for (let i = 0; i < odd.length; i++) {
 //   odd[i].style.backgroundColor = "green";
 // }
-let itemList = document.querySelector("#items");
-console.log(itemList.parentElement);
+// let itemList = document.querySelector("#items");
+// console.log(itemList.parentElement);
 
-console.log(itemList.lastElementChild);
-console.group(itemList.lastChild);
-console.log(itemList.firstElementChild);
-console.log(itemList.firstChild);
-console.log(itemList.nextSibling);
-console.log(itemList.nextElementSibling);
-console.log(itemList.previousSibling);
-console.log(itemList.previousElementSibling);
+// console.log(itemList.lastElementChild);
+// console.group(itemList.lastChild);
+// console.log(itemList.firstElementChild);
+// console.log(itemList.firstChild);
+// console.log(itemList.nextSibling);
+// console.log(itemList.nextElementSibling);
+// console.log(itemList.previousSibling);
+// console.log(itemList.previousElementSibling);
 
-let newD = document.createElement("div");
-let newDivTe = document.createTextNode("HEllo");
-newD.style.fontSize = "30px";
-newD.style.fontWeight = "bold";
-newD.appendChild(newDivTe);
-let container = document.querySelector("header .container");
-let h1 = document.querySelector("header #header-title");
-container.insertBefore(newD, h1);
-console.log(newD);
+// let newD = document.createElement("div");
+// let newDivTe = document.createTextNode("HEllo");
+// newD.style.fontSize = "30px";
+// newD.style.fontWeight = "bold";
+// newD.appendChild(newDivTe);
+// let container = document.querySelector("header .container");
+// let h1 = document.querySelector("header #header-title");
+// container.insertBefore(newD, h1);
+// console.log(newD);
 
-let newDiv = document.createElement("div");
-let newDivText = document.createTextNode("HEllo");
+// let newDiv = document.createElement("div");
+// let newDivText = document.createTextNode("HEllo");
 
-newDiv.style.fontSize = "30px";
-newDiv.style.fontWeight = "bold";
+// newDiv.style.fontSize = "30px";
+// newDiv.style.fontWeight = "bold";
 
-let main = document.querySelector("div #items");
-let before = document.querySelector("div .list-group-item");
-main.insertBefore(newDiv, before);
-console.log(newDiv);
+// let main = document.querySelector("div #items");
+// let before = document.querySelector("div .list-group-item");
+// main.insertBefore(newDiv, before);
+// console.log(newDiv);
+
+let form = document.getElementById("addForm");
+let item = document.getElementById("items");
+
+form.addEventListener("submit", addItem);
+item.addEventListener("click", removeItem);
+
+function addItem(e) {
+  e.preventDefault();
+  let formInput = document.getElementById("item").value;
+  let li = document.createElement("li");
+  li.className = "list-group-item";
+  li.appendChild(document.createTextNode(formInput));
+  let delBtn = document.createElement("button");
+  delBtn.className = "btn btn-danger btn-sm float-right delete";
+  delBtn.appendChild(document.createTextNode("x"));
+  li.appendChild(delBtn);
+  item.appendChild(li);
+}
+
+function removeItem(e) {
+  e.preventDefault();
+  if (e.target.classList.contains("delete")) {
+    if (confirm("Are you sure?")) {
+      let li = e.target.parentElement;
+      item.removeChild(li);
+    }
+  }
+}
