@@ -161,7 +161,7 @@ function filterItems(e) {
   Array.from(lis).forEach(function (item) {
     var itemName = item.firstChild.textContent;
 
-    var desName = item.lastChild.textContent;
+    var desName = item.childNodes[1].textContent;
 
     if (
       itemName.toLowerCase().indexOf(text) != -1 ||
