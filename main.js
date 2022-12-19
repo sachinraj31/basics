@@ -174,17 +174,34 @@
 //   });
 // }
 let form = document.getElementById("my-form");
-let nameInput = document.getElementById("name");
-
-let email = document.getElementById("email");
-
 form.addEventListener("submit", addForm);
 
 function addForm(e) {
   e.preventDefault();
+  //correct format
+  let nameInput = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
 
-  localStorage.setItem("Name", `${nameInput.value}`);
-  localStorage.setItem("Email", `${email.value}`);
+  let contact = { name: nameInput, email: email };
+
+  localStorage.setItem("contact", JSON.stringify(contact));
+  // let userData = {
+  //   name: document.getElementById("name").value,
+  //   email: document.getElementById("email").value,
+  // };
+
+  // //Storing the previous local storage data
+  // let storedData = localStorage.getItem("userData");
+
+  // if (storedData) {
+  //   storedData = JSON.parse(storedData);
+  //   storedData.push(userData);
+  //   localStorage.setItem("userData", JSON.stringify(storedData));
+  // } else {
+  //   let dataArray = [];
+  //   dataArray.push(userData);
+  //   localStorage.setItem("userData", JSON.stringify(dataArray));
+  // }
 }
 
 //   // Get input value
