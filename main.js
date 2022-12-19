@@ -71,13 +71,13 @@
 
 // form.addEventListener("submit", addItem);
 
-// // Delete event
+// // // Delete event
 
 // itemList.addEventListener("click", removeItem);
 
-// // Filter event
+// // // Filter event
 
-// filter.addEventListener("keyup", filterItems);
+// // filter.addEventListener("keyup", filterItems);
 
 // // Add item
 
@@ -178,80 +178,97 @@ form.addEventListener("submit", addForm);
 
 function addForm(e) {
   e.preventDefault();
-  //correct format
+  // add email and name
   let nameInput = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
+  let emailInput = document.getElementById("email").value;
+  let user = document.getElementById("users");
+  let manyUser = document.getElementById("many-users");
 
-  let contact = { name: nameInput, email: email };
+  let li = document.createElement("li");
+  li.className = "iList";
 
-  localStorage.setItem("contact", JSON.stringify(contact));
-  // let userData = {
-  //   name: document.getElementById("name").value,
-  //   email: document.getElementById("email").value,
-  // };
+  let y = li.appendChild(document.createTextNode(nameInput));
+  let x = li.appendChild(document.createTextNode(emailInput));
+  user.appendChild(y);
+  user.appendChild(x);
+  // manyUser.appendChild(y);
+  // manyUser.appendChild(x);
+  user.insertBefore(y, manyUser);
+  user.insertBefore(x, manyUser);
 
-  // //Storing the previous local storage data
-  // let storedData = localStorage.getItem("userData");
+  //correct format
+  // let nameInput = document.getElementById("name").value;
+  // let email = document.getElementById("email").value;
 
-  // if (storedData) {
-  //   storedData = JSON.parse(storedData);
-  //   storedData.push(userData);
-  //   localStorage.setItem("userData", JSON.stringify(storedData));
-  // } else {
-  //   let dataArray = [];
-  //   dataArray.push(userData);
-  //   localStorage.setItem("userData", JSON.stringify(dataArray));
-  // }
+  // let contact = { name: nameInput, email: email };
+
+  // localStorage.setItem("contact", JSON.stringify(contact));
+  let userData = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+  };
+
+  //Storing the previous local storage data
+  let storedData = localStorage.getItem("userData");
+
+  if (storedData) {
+    storedData = JSON.parse(storedData);
+    storedData.push(userData);
+    localStorage.setItem("userData", JSON.stringify(storedData));
+  } else {
+    let dataArray = [];
+    dataArray.push(userData);
+    localStorage.setItem("userData", JSON.stringify(dataArray));
+  }
 }
 
-//   // Get input value
+// // Get input value
 
-//   var newItem = document.getElementById("item").value;
+// var newItem = document.getElementById("item").value;
 
-//   var newdes = document.getElementById("description").value;
+// var newdes = document.getElementById("description").value;
 
-//   // Create new li element
+// // Create new li element
 
-//   var li = document.createElement("li");
+// var li = document.createElement("li");
 
-//   // Add class
+// // Add class
 
-//   li.className = "list-group-item";
+// li.className = "list-group-item";
 
-//   // Add text node with input value
+// // Add text node with input value
 
-//   li.appendChild(document.createTextNode(newItem));
+// li.appendChild(document.createTextNode(newItem));
 
-//   li.appendChild(document.createTextNode(newdes));
+// li.appendChild(document.createTextNode(newdes));
 
-//   // Create del button element
+// // Create del button element
 
-//   var editBtn = document.createElement("button");
+// var editBtn = document.createElement("button");
 
-//   var deleteBtn = document.createElement("button");
+// var deleteBtn = document.createElement("button");
 
-//   //Add classes to del button
+// //Add classes to del button
 
-//   editBtn.className = "btn btn-edit btn-#ccc float-right edit";
+// editBtn.className = "btn btn-edit btn-#ccc float-right edit";
 
-//   deleteBtn.className = "btn btn-danger btn-sm float-right delete";
+// deleteBtn.className = "btn btn-danger btn-sm float-right delete";
 
-//   // Append text node
+// // Append text node
 
-//   editBtn.appendChild(document.createTextNode("EDIT"));
+// editBtn.appendChild(document.createTextNode("EDIT"));
 
-//   deleteBtn.appendChild(document.createTextNode("X"));
+// deleteBtn.appendChild(document.createTextNode("X"));
 
-//   // Append button to li
+// // Append button to li
 
-//   li.appendChild(editBtn);
+// li.appendChild(editBtn);
 
-//   li.appendChild(deleteBtn);
+// li.appendChild(deleteBtn);
 
-//   // Append li to list
+// // Append li to list
 
-//   itemList.appendChild(li);
-// }
+// itemList.appendChild(li);
 
 // // Remove item
 
