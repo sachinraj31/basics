@@ -182,98 +182,98 @@ form.addEventListener("submit", addForm);
 
 function addForm(e) {
   e.preventDefault();
-<<<<<<< HEAD
+
   localStorage.setItem("Name", `${nameInput.value}`);
   localStorage.setItem("Email", `${email.value}`);
-=======
-
-  // Get input value
-
-  var newItem = document.getElementById("item").value;
-
-  var newdes = document.getElementById("description").value;
-
-  // Create new li element
-
-  var li = document.createElement("li");
-
-  // Add class
-
-  li.className = "list-group-item";
-
-  // Add text node with input value
-
-  li.appendChild(document.createTextNode(newItem));
-
-  li.appendChild(document.createTextNode(newdes));
-
-  // Create del button element
-
-  var editBtn = document.createElement("button");
-
-  var deleteBtn = document.createElement("button");
-
-  //Add classes to del button
-
-  editBtn.className = "btn btn-edit btn-#ccc float-right edit";
-
-  deleteBtn.className = "btn btn-danger btn-sm float-right delete";
-
-  // Append text node
-
-  editBtn.appendChild(document.createTextNode("EDIT"));
-
-  deleteBtn.appendChild(document.createTextNode("X"));
-
-  // Append button to li
-
-  li.appendChild(editBtn);
-
-  li.appendChild(deleteBtn);
-
-  // Append li to list
-
-  itemList.appendChild(li);
 }
 
-// Remove item
+//   // Get input value
 
-function removeItem(e) {
-  if (e.target.classList.contains("delete")) {
-    if (confirm("Are You Sure?")) {
-      var li = e.target.parentElement;
+//   var newItem = document.getElementById("item").value;
 
-      itemList.removeChild(li);
-    }
-  }
-}
+//   var newdes = document.getElementById("description").value;
 
-// Filter Items
+//   // Create new li element
 
-function filterItems(e) {
-  //convert text to lowercase
+//   var li = document.createElement("li");
 
-  var text = e.target.value.toLowerCase();
+//   // Add class
 
-  // Get all lis
+//   li.className = "list-group-item";
 
-  var lis = itemList.getElementsByTagName("li");
+//   // Add text node with input value
 
-  //  Convert to an array
+//   li.appendChild(document.createTextNode(newItem));
 
-  Array.from(lis).forEach(function (item) {
-    var itemName = item.firstChild.textContent;
+//   li.appendChild(document.createTextNode(newdes));
 
-    var desName = item.childNodes[1].textContent;
+//   // Create del button element
 
-    if (
-      itemName.toLowerCase().indexOf(text) != -1 ||
-      desName.toLowerCase().indexOf(text) != -1
-    ) {
-      item.style.display = "block";
-    } else {
-      item.style.display = "none";
-    }
-  });
->>>>>>> 9018c04ab407f3abf8a4e9640c052f75a528d68c
-}
+//   var editBtn = document.createElement("button");
+
+//   var deleteBtn = document.createElement("button");
+
+//   //Add classes to del button
+
+//   editBtn.className = "btn btn-edit btn-#ccc float-right edit";
+
+//   deleteBtn.className = "btn btn-danger btn-sm float-right delete";
+
+//   // Append text node
+
+//   editBtn.appendChild(document.createTextNode("EDIT"));
+
+//   deleteBtn.appendChild(document.createTextNode("X"));
+
+//   // Append button to li
+
+//   li.appendChild(editBtn);
+
+//   li.appendChild(deleteBtn);
+
+//   // Append li to list
+
+//   itemList.appendChild(li);
+// }
+
+// // Remove item
+
+// function removeItem(e) {
+//   if (e.target.classList.contains("delete")) {
+//     if (confirm("Are You Sure?")) {
+//       var li = e.target.parentElement;
+
+//       itemList.removeChild(li);
+//     }
+//   }
+// }
+
+// // Filter Items
+
+// function filterItems(e) {
+//   //convert text to lowercase
+
+//   var text = e.target.value.toLowerCase();
+
+//   // Get all lis
+
+//   var lis = itemList.getElementsByTagName("li");
+
+//   //  Convert to an array
+
+//   Array.from(lis).forEach(function (item) {
+//     var itemName = item.firstChild.textContent;
+
+//     var desName = item.childNodes[1].textContent;
+
+//     if (
+//       itemName.toLowerCase().indexOf(text) != -1 ||
+//       desName.toLowerCase().indexOf(text) != -1
+//     ) {
+//       item.style.display = "block";
+//     } else {
+//       item.style.display = "none";
+//     }
+//   });
+// >>>>>>> 9018c04ab407f3abf8a4e9640c052f75a528d68c
+// }
