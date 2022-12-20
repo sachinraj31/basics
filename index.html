@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -30,13 +30,107 @@
       <ul id="users">
         <div id="many-users"></div>
       </ul>
-      <!-- <ul class="items">
+      <ul class="items">
         <li class="item"></li>
         <li class="item"></li>
         <li class="item"></li>
-      </ul> -->
+      </ul>
     </section>
 
     <script src="main.js"></script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form</title>
+    <style>
+      .form {
+        display: flex;
+        flex-direction: column;
+        width: 30%;
+        padding: 30px;
+      }
+
+      .form > label {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .form > input {
+        margin-bottom: 20px;
+        padding: 10px;
+        font-size: 18px;
+      }
+
+      .form > button {
+        padding: 10px;
+        background-color: #fc0;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form">
+      <label>Name:</label>
+      <input type="text" name="name" id="nameInput" />
+      <label>Email:</label>
+      <input type="email" name="email" id="emailInput" />
+      <button type="submit" id="submitBtn">Submit</button>
+    </div>
+    <div class="data" id="dataContainer">
+      <ul id="dataList"></ul>
+    </div>
+    <script>
+      let nameInput = document.querySelector("#nameInput");
+      let emailInput = document.querySelector("#emailInput");
+      let submitBtn = document.querySelector("#submitBtn");
+      let dataList = document.querySelector("#dataList");
+      let dataContainer = document.querySelector("#dataContainer");
+
+      submitBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        let name = nameInput.value;
+        let email = emailInput.value;
+
+        // Store data in local storage
+        let data = {
+          name: name,
+          email: email,
+        };
+        if (localStorage.getItem("data") === null) {
+          let dataArray = [];
+          dataArray.push(data);
+          localStorage.setItem("data", JSON.stringify(dataArray));
+        } else {
+          let dataArray = JSON.parse(localStorage.getItem("data"));
+          dataArray.push(data);
+          localStorage.setItem("data", JSON.stringify(dataArray));
+        }
+
+        // Show data in UI
+        dataContainer.style.display = "block";
+        let li = document.createElement("li");
+        li.innerHTML = `Name: ${name} | Email: ${email} <button onclick="deleteData('${email}')">Delete</button>`;
+        dataList.appendChild(li);
+
+        // Clear fields
+        nameInput.value = "";
+        emailInput.value = "";
+      });
+
+      // Delete data from UI
+      function deleteData(email) {
+        let dataArray = JSON.parse(localStorage.getItem("data"));
+        for (let i = 0; i < dataArray.length; i++) {
+          if (dataArray[i].email === email) {
+            dataArray.splice(i, 1);
+            localStorage.setItem("data", JSON.stringify(dataArray));
+            dataList.removeChild(dataList.children[i]);
+          }
+        }
+      }
+    </script>
   </body>
 </html>

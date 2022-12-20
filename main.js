@@ -183,18 +183,30 @@ function addForm(e) {
   let emailInput = document.getElementById("email").value;
   let user = document.getElementById("users");
   let manyUser = document.getElementById("many-users");
+  let btn = document.createElement("div");
+  let delBtn = document.createElement("button");
+  delBtn.id = "del";
+  dispatchEvent.id = "btn";
+  delBtn.setAttribute("type", "submit");
 
   let li = document.createElement("li");
   li.className = "iList";
 
+  user.appendChild(btn);
+  console.log(delBtn);
+  console.log(delBtn.nextSibling);
+
   let y = li.appendChild(document.createTextNode(nameInput));
   let x = li.appendChild(document.createTextNode(emailInput));
+  let z = delBtn.appendChild(document.createTextNode("x"));
   user.appendChild(y);
   user.appendChild(x);
+  user.appendChild(z);
   // manyUser.appendChild(y);
   // manyUser.appendChild(x);
   user.insertBefore(y, manyUser);
   user.insertBefore(x, manyUser);
+  user.insertBefore(z, btn);
 
   //correct format
   // let nameInput = document.getElementById("name").value;
