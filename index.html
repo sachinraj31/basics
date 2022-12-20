@@ -44,93 +44,111 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Form</title>
+    <title>Form With JS</title>
     <style>
-      .form {
-        display: flex;
-        flex-direction: column;
-        width: 30%;
-        padding: 30px;
+      #form {
+        width: 500px;
+        margin: 0 auto;
       }
-
-      .form > label {
-        margin-bottom: 10px;
-        font-size: 20px;
-      }
-
-      .form > input {
+      #form input,
+      #form button {
+        width: 100%;
         margin-bottom: 20px;
-        padding: 10px;
-        font-size: 18px;
-      }
-
-      .form > button {
-        padding: 10px;
-        background-color: #fc0;
-        font-size: 16px;
       }
     </style>
   </head>
   <body>
-    <div class="form">
-      <label>Name:</label>
-      <input type="text" name="name" id="nameInput" />
-      <label>Email:</label>
-      <input type="email" name="email" id="emailInput" />
-      <button type="submit" id="submitBtn">Submit</button>
-    </div>
-    <div class="data" id="dataContainer">
-      <ul id="dataList"></ul>
+    <div id="form">
+      <h1>Form With JS</h1>
+      <input type="text" placeholder="Name" id="name" />
+      <input type="email" placeholder="Email" id="email" />
+      <button type="submit" onclick="submitForm()">Submit</button>
+      <div id="details"></div>
     </div>
     <script>
-      let nameInput = document.querySelector("#nameInput");
-      let emailInput = document.querySelector("#emailInput");
-      let submitBtn = document.querySelector("#submitBtn");
-      let dataList = document.querySelector("#dataList");
-      let dataContainer = document.querySelector("#dataContainer");
+      let userDetails = [];
+      function submitForm() {
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
 
-      submitBtn.addEventListener("click", function (e) {
-        e.preventDefault();
-        let name = nameInput.value;
-        let email = emailInput.value;
+        //validate inputs
+        if (name == "" || email == "") {
+          alert("Please enter all details!");
+          return;
+        }
 
-        // Store data in local storage
-        let data = {
+        //store inputs in object
+        let user = {
           name: name,
           email: email,
         };
-        if (localStorage.getItem("data") === null) {
-          let dataArray = [];
-          dataArray.push(data);
-          localStorage.setItem("data", JSON.stringify(dataArray));
-        } else {
-          let dataArray = JSON.parse(localStorage.getItem("data"));
-          dataArray.push(data);
-          localStorage.setItem("data", JSON.stringify(dataArray));
-        }
 
-        // Show data in UI
-        dataContainer.style.display = "block";
-        let li = document.createElement("li");
-        li.innerHTML = `Name: ${name} | Email: ${email} <button onclick="deleteData('${email}')">Delete</button>`;
-        dataList.appendChild(li);
+        //store object in array
+        userDetails.push(user);
 
-        // Clear fields
-        nameInput.value = "";
-        emailInput.value = "";
-      });
+        //store values in localStorage
+        localStorage.setItem("userDetails", JSON.stringify(userDetails));
 
-      // Delete data from UI
-      function deleteData(email) {
-        let dataArray = JSON.parse(localStorage.getItem("data"));
-        for (let i = 0; i < dataArray.length; i++) {
-          if (dataArray[i].email === email) {
-            dataArray.splice(i, 1);
-            localStorage.setItem("data", JSON.stringify(dataArray));
-            dataList.removeChild(dataList.children[i]);
-          }
-        }
+        //display values in UI
+        showDetails();
       }
+
+      //display values in UI
+      function showDetails() {
+        let details = "";
+        userDetails.forEach(function (user, index) {
+          details += `
+                        <div>
+                            <h3>${index + 1}. ${user.name}</h3>
+                            <p>${user.email}</p>
+                            <button onclick="editDetails(${index})">Edit</button>
+                            <button onclick="deleteDetails(${index})">Delete</button>
+                        </div>
+                    `;
+        });
+        document.getElementById("details").innerHTML = details;
+      }
+
+      //edit values in UI
+      function editDetails(index) {
+        let name = prompt("Enter name");
+        let email = prompt("Enter email");
+
+        //validate inputs
+        if (name == "" || email == "") {
+          alert("Please enter all details!");
+          return;
+        }
+
+        //update array
+        userDetails[index].name = name;
+        userDetails[index].email = email;
+
+        //store values in localStorage
+        localStorage.setItem("userDetails", JSON.stringify(userDetails));
+
+        //display values in UI
+        showDetails();
+      }
+
+      //delete values from UI
+      function deleteDetails(index) {
+        //remove from array
+        userDetails.splice(index, 1);
+
+        //store values in localStorage
+        localStorage.setItem("userDetails", JSON.stringify(userDetails));
+
+        //display values in UI
+        showDetails();
+      }
+
+      //check for existing data
+      let existingData = localStorage.getItem("userDetails");
+      if (existingData) {
+        userDetails = JSON.parse(existingData);
+      }
+      showDetails();
     </script>
   </body>
 </html>
